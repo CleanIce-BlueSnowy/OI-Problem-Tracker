@@ -1,0 +1,37 @@
+import { Button } from "std-widgets.slint";
+
+export component MainWindow inherits Window {
+    width: 640px;
+    height: 480px;
+
+    default-font-family: "system-default-font";
+    default-font-size: 15px;
+
+    in property <string> text: "Welcome to use Rust Slint!";
+
+    callback text_changed(string);
+
+    VerticalLayout {
+        spacing: 20px;
+        alignment: center;
+
+        Text {
+            horizontal-alignment: center;
+            text: root.text;
+            font-size: 20px;
+            font-family: "system-default-font";
+        }
+
+        HorizontalLayout {
+            alignment: center;
+
+            Button {
+                text: "Click this button to change the text.";
+                width: self.preferred-width;
+                clicked => {
+                    text_changed("You changed this text!");
+                }
+            }
+        }
+    }
+}
